@@ -1,2 +1,20 @@
 <h1>Vending Machine</h1>
 
+
+<table >
+	<tr>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th>Image</th>
+	</tr>
+	<%= products.each do |product| %>
+		<tr>
+			<td>product.name</td>
+			<td>product.price</td>
+			<td>product.quantity</td>
+			<td>product.image</td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to "Add Product" %>
