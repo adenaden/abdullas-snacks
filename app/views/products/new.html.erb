@@ -15,8 +15,10 @@
       <% end %>
 
 	<%= f.label :name %>
-	<%= f.text_field :name %>
+	<%= f.text_field :name %><br /><br />
 	<%= f.label :price %>
-	<%= f.text_field :price %>
+	<%= f.text_field :price %><br /><br />
+	<%= f.label 'Image URL' %>
+	<%= f.text_field :image %><br /><br />
 	<%= f.submit "Create" %>
 <% end %>
