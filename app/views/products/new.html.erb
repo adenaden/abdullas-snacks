@@ -1,6 +1,19 @@
 <h1>Add New Product</h1>
 
+
+
 <%= form_for @product do |f| %>
+
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> </h2>
+
+      <ul>
+      <% @high_score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% end %>
+
 	<%= f.label :name %>
 	<%= f.text_field :name %>
 	<%= f.label :price %>
