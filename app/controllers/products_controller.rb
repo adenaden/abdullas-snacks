@@ -3,5 +3,23 @@ class ProductsController < ApplicationController
   end
 
   def new
+  	@product = Product.new
+  end
+
+  def create
+  	product = Product.new(product_params)
+
+  	if product
+  		redirect_to(root_path, notice: "Product has been created!")
+  	else
+  		render 'new'
+  	end
+  end
+
+
+  private
+
+  def product_params
+  	params.require(:product).permit(:name, :price)
   end
 end
