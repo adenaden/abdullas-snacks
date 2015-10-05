@@ -1,20 +1,32 @@
 <h1>Vending Machine</h1>
 
 
-<table >
+<div style="border:1px solid black">
+	<% @products.each do |product| %>
+		<% if product.quantity > 0 %>
+			<%= link_to image_tag(product.image), new_purchase_path(product: product) %>
+		<% end %>
+	<% end %>
+</div>
+
+
+<br />
+<br />
+<br />
+<br />
+<h2>stock</h2>
+<table style="border:1px solid black">
 	<tr>
 		<th>Name</th>
 		<th>Price</th>
 		<th>Quantity</th>
-		<th>Image</th>
 	</tr>
-	<%= products.each do |product| %>
+	<% @products.each do |product| %>
 		<tr>
-			<td>product.name</td>
-			<td>product.price</td>
-			<td>product.quantity</td>
-			<td>product.image</td>
+			<td><%= product.name %></td>
+			<td><%= product.price %></td>
+			<td><%= product.quantity %></td>
 		</tr>
 	<% end %>
 </table>
-<%= link_to "Add Product" %>
+<%= link_to "Add Product", new_product_path %>

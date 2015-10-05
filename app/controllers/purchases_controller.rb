@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
 
 	def new
 		@purchase = Purchase.new
+		@product = Product.find(params[:product])
 	end
 
 	def create
@@ -13,9 +14,22 @@ class PurchasesController < ApplicationController
 		fivepence = params['£0.05'].to_f * 5
 		twopence = params['£0.02'].to_f * 2
 		onepence = params['£0.01'].to_f * 1
+		paid = ([twopound, onepound, fiftypence, twentypence, tenpence, fivepence, twopence, onepence].sum) / 100 
 
-		paid = [twopound, onepound, fiftypence, twentypence, tenpence, fivepence, twopence, onepence].sum
-		puts paid/ 100 
-		redirect_to(root_path, notice: "Your purchase was successful")
+
+		puts paid
+		product = Product.find(params[:product_id])
+
+		if paid >= product.price
+			change = paid - product.price
+			Purchase.create('product' => product.name, 'paid' => paid, 'change' => change)
+			product.update('quantity' => (product.quantity - 1))	
+			redirect_to(root_path, notice: "Your purchase was successful! and your change is #{change}0p")
+		else
+			redirect_to(new_purchase_path(product: product.id), notice: "Insuficient funds matey!")
+
+		end 
+
+
 	end
 end
