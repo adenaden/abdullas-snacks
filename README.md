@@ -2,8 +2,8 @@
 
 ## Setup
 
-1. bundle
-2.rake db:migrate
-3.rake db:seed
+1. bundle <br >
+2.rake db:migrate <br >
+3.rake db:seed <br ><br > 
 
 fireup server
